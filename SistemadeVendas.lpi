@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="9"/>
+    <PathDelim Value="\"/>
+    <General>
+      <SessionStorage Value="InProjectDir"/>
+      <MainUnit Value="0"/>
+      <AutoCreateForms Value="False"/>
+      <Title Value="Sistema de Vendas"/>
+      <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
+    </General>
+    <i18n>
+      <EnableI18N LFM="False"/>
+    </i18n>
+    <VersionInfo>
+      <AutoIncrementBuild Value="True"/>
+      <BuildNr Value="5"/>
+      <Language Value="0416"/>
+      <Attributes pvaDebug="True"/>
+      <StringTable ProductVersion=""/>
+    </VersionInfo>
+    <BuildModes Count="1">
+      <Item1 Name="Default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="7">
+      <Item1>
+        <PackageName Value="lazdbexport"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="laz_fpspreadsheetexport_visual"/>
+      </Item2>
+      <Item3>
+        <PackageName Value="laz_fpspreadsheet"/>
+      </Item3>
+      <Item4>
+        <PackageName Value="lazreport"/>
+      </Item4>
+      <Item5>
+        <PackageName Value="FCL"/>
+      </Item5>
+      <Item6>
+        <PackageName Value="SQLDBLaz"/>
+      </Item6>
+      <Item7>
+        <PackageName Value="LCL"/>
+      </Item7>
+    </RequiredPackages>
+    <Units Count="17">
+      <Unit0>
+        <Filename Value="SistemadeVendas.lpr"/>
+        <IsPartOfProject Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="uprincipal.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormPrincipal"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uPrincipal"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="udatamoduledb.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DataModuleDB"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="uDataModuleDB"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="ucadastrousuario.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormCadastroUsuarios"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uCadastroUsuario"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="ucadastrocliente.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormCadastroCliente"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="ucadastrocategoriasubcategoria.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormCadastroCategoriaSubcategoria"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="ucadastroproduto.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormCadastroProduto"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="uestoqueproduto.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormEstoqueProduto"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="upedido.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormPedido"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="ubuscacliente.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormBuscaCliente"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="ubuscaproduto.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormBuscaProduto"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="uconsultapedido.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormConsultaPedidos"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="uetiqueta.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormEtiqueta"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="urelatorioestoque.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormRelatorioEstoque"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="urelpedidos.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormRelatorioPedidos"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="ulogin.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormLogin"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="ualterasenha.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormAlteraSenha"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit16>
+    </Units>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <PathDelim Value="\"/>
+    <Target>
+      <Filename Value="SistemadeVendas"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+    </SearchPaths>
+    <Linking>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

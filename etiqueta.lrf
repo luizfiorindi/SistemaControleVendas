@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CONFIG>
+  <LazReport>
+    <Version Value="29"/>
+    <Title Value=""/>
+    <Subject Value=""/>
+    <KeyWords Value=""/>
+    <Comments Value=""/>
+    <ReportCreateDate Value="1899-12-30 00:00:00"/>
+    <ReportLastChange Value="2017-08-16 10:40:35"/>
+    <ReportVersionBuild Value=""/>
+    <ReportVersionMajor Value=""/>
+    <ReportVersionMinor Value=""/>
+    <ReportVersionRelease Value=""/>
+    <ReportAutor Value=""/>
+    <Script Value=""/>
+    <Pages>
+      <PrintToDefault Value="False"/>
+      <DoublePass Value="False"/>
+      <SelectedPrinter Value="PDFCreator"/>
+      <PageCount Value="1"/>
+      <Page1>
+        <Name Value="Page1"/>
+        <ClassName Value="TfrPageReport"/>
+        <Visible Value="True"/>
+        <Width Value="595"/>
+        <Height Value="842"/>
+        <Script Value=""/>
+        <PgSize Value="9"/>
+        <Margins>
+          <left Value="0"/>
+          <Top Value="0"/>
+          <Right Value="0"/>
+          <Bottom Value="0"/>
+        </Margins>
+        <Orientation Value="poPortrait"/>
+        <UseMargins Value="True"/>
+        <PrintToPrevPage Value="False"/>
+        <ColCount Value="0"/>
+        <ColGap Value="0"/>
+        <LayoutOrder Value="loColumns"/>
+        <Object1>
+          <Name Value="Memo1"/>
+          <ClassName Value="TfrMemoView"/>
+          <Visible Value="True"/>
+          <Typ Value="gtMemo"/>
+          <StreamMode Value="0"/>
+          <Size>
+            <Left Value="84"/>
+            <Top Value="80"/>
+            <Width Value="556"/>
+            <Height Value="240"/>
+          </Size>
+          <Flags Value="3"/>
+          <FillColor Value="clNone"/>
+          <Frames>
+            <FrameColor Value="clBlack"/>
+            <FrameStyle Value="frsSolid"/>
+            <FrameWidth Value="1"/>
+            <FrameBorders Value=""/>
+            <Restrictions Value=""/>
+          </Frames>
+          <Data>
+            <Format Value="556"/>
+            <FormatStr Value=""/>
+            <Memo Value="Venda: [venda]&#xD;&#xA;&#xD;&#xA;Destinatário: [destino]&#xD;&#xA;&#xD;&#xA;Endereço: [endereco] , [numero]&#xD;&#xA;&#xD;&#xA;Complemento: [complemento]&#xD;&#xA;&#xD;&#xA;Bairro: [bairro]&#xD;&#xA;&#xD;&#xA;Cidade: [cidade] - [uf]&#xD;&#xA;&#xD;&#xA;CEP: [cep]&#xD;&#xA;"/>
+            <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
+          </Data>
+          <Tag Value=""/>
+          <FURLInfo Value=""/>
+          <Font>
+            <Name Value="helvetica [urw]"/>
+            <Size Value="10"/>
+            <Color Value="clBlack"/>
+            <Charset Value="0"/>
+            <Style Value="fsBold"/>
+          </Font>
+          <Highlight>
+            <FontStyle Value="2"/>
+            <FontColor Value="clBlack"/>
+            <FillColor Value="clWhite"/>
+            <HighlightStr Value=""/>
+          </Highlight>
+          <Alignment Value="taLeftJustify"/>
+          <Layout Value="tlTop"/>
+          <Angle Value="0"/>
+          <Justify Value="False"/>
+          <Cursor Value="0"/>
+        </Object1>
+        <ObjectCount Value="1"/>
+      </Page1>
+      <FVal>
+        <Count Value="9"/>
+        <Objects1>
+          <Typ Value="1"/>
+          <OtherKind Value="0"/>
+          <Dataset Value="DataModuleDB.SQLQueryPedidos"/>
+          <Field Value="iID_PE"/>
+          <Item Value="venda"/>
+        </Objects1>
+        <Objects2>
+          <Typ Value="1"/>
+          <OtherKind Value="0"/>
+          <Dataset Value="DataModuleDB.SQLQueryPedidos"/>
+          <Field Value="cRAZAO_PE"/>
+          <Item Value="destino"/>
+        </Objects2>
+        <Objects3>
+          <Typ Value="1"/>
+          <OtherKind Value="0"/>
+          <Dataset Value="DataModuleDB.SQLQueryPedidos"/>
+          <Field Value="cENDERECO_PE"/>
+          <Item Value="endereco"/>
+        </Objects3>
+        <Objects4>
+          <Typ Value="1"/>
+          <OtherKind Value="0"/>
+          <Dataset Value="DataModuleDB.SQLQueryPedidos"/>
+          <Field Value="cNUMERO_PE"/>
+          <Item Value="numero"/>
+        </Objects4>
+        <Objects5>
+          <Typ Value="1"/>
+          <OtherKind Value="0"/>
+          <Dataset Value="DataModuleDB.SQLQueryPedidos"/>
+          <Field Value="cCOMPLEMENTO_PE"/>
+          <Item Value="complemento"/>
+        </Objects5>
+        <Objects6>
+          <Typ Value="1"/>
+          <OtherKind Value="0"/>
+          <Dataset Value="DataModuleDB.SQLQueryPedidos"/>
+          <Field Value="cBAIRRO_PE"/>
+          <Item Value="bairro"/>
+        </Objects6>
+        <Objects7>
+          <Typ Value="1"/>
+          <OtherKind Value="0"/>
+          <Dataset Value="DataModuleDB.SQLQueryPedidos"/>
+          <Field Value="cCIDADE_PE"/>
+          <Item Value="cidade"/>
+        </Objects7>
+        <Objects8>
+          <Typ Value="1"/>
+          <OtherKind Value="0"/>
+          <Dataset Value="DataModuleDB.SQLQueryPedidos"/>
+          <Field Value="cUF_PE"/>
+          <Item Value="uf"/>
+        </Objects8>
+        <Objects9>
+          <Typ Value="1"/>
+          <OtherKind Value="0"/>
+          <Dataset Value="DataModuleDB.SQLQueryPedidos"/>
+          <Field Value="nCEP_PE"/>
+          <Item Value="cep"/>
+        </Objects9>
+      </FVal>
+      <ParentVars Value="variaveis de campos&#xD;&#xA; venda&#xD;&#xA; destino&#xD;&#xA; endereco&#xD;&#xA; numero&#xD;&#xA; complemento&#xD;&#xA; bairro&#xD;&#xA; cidade&#xD;&#xA; uf&#xD;&#xA; cep&#xD;&#xA;"/>
+    </Pages>
+    <DetailReports>
+      <Count Value="0"/>
+    </DetailReports>
+  </LazReport>
+</CONFIG>

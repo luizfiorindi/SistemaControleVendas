@@ -1,0 +1,191 @@
+object FormCadastroUsuarios: TFormCadastroUsuarios
+  Left = 497
+  Height = 426
+  Top = 194
+  Width = 411
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Cadastro de Usuário'
+  ClientHeight = 426
+  ClientWidth = 411
+  OnClose = FormClose
+  OnShow = FormShow
+  Position = poMainFormCenter
+  LCLVersion = '1.6.0.4'
+  object DBEditNome: TDBEdit
+    Left = 8
+    Height = 23
+    Top = 91
+    Width = 288
+    DataField = 'cNOME_US'
+    DataSource = DataSourceUsuario
+    ReadOnly = True
+    CharCase = ecNormal
+    MaxLength = 0
+    TabOrder = 0
+  end
+  object DBEditLogin: TDBEdit
+    Left = 8
+    Height = 23
+    Top = 136
+    Width = 288
+    DataField = 'cLOGIN_US'
+    DataSource = DataSourceUsuario
+    ReadOnly = True
+    CharCase = ecNormal
+    MaxLength = 0
+    TabOrder = 1
+  end
+  object DBEditSenha: TDBEdit
+    Left = 8
+    Height = 23
+    Top = 178
+    Width = 288
+    DataField = 'cSENHA_US'
+    DataSource = DataSourceUsuario
+    ReadOnly = True
+    CharCase = ecNormal
+    MaxLength = 0
+    PasswordChar = '*'
+    TabOrder = 2
+  end
+  object Label1: TLabel
+    Left = 8
+    Height = 15
+    Top = 75
+    Width = 33
+    Caption = 'Nome'
+    ParentColor = False
+  end
+  object Label2: TLabel
+    Left = 8
+    Height = 15
+    Top = 120
+    Width = 30
+    Caption = 'Login'
+    ParentColor = False
+  end
+  object Senha: TLabel
+    Left = 8
+    Height = 15
+    Top = 162
+    Width = 32
+    Caption = 'Senha'
+    ParentColor = False
+  end
+  object DBCheckBoxAdmin: TDBCheckBox
+    Left = 8
+    Height = 23
+    Top = 219
+    Width = 98
+    Caption = 'Administrador'
+    DataField = 'cPERMISSAO_US'
+    DataSource = DataSourceUsuario
+    ReadOnly = True
+    TabOrder = 3
+    ValueChecked = 'A'
+    ValueUnchecked = 'U'
+  end
+  object DBCheckBoxStatus: TDBCheckBox
+    Left = 144
+    Height = 23
+    Top = 219
+    Width = 90
+    Caption = 'Ativo'
+    DataField = 'cSTATUS_US'
+    DataSource = DataSourceUsuario
+    ReadOnly = True
+    TabOrder = 4
+    ValueChecked = '1'
+    ValueUnchecked = '0'
+  end
+  object DBGridUsuarios: TDBGrid
+    Left = 0
+    Height = 157
+    Top = 269
+    Width = 411
+    Align = alBottom
+    Color = clWindow
+    Columns = <    
+      item
+        Title.Caption = 'Nome'
+        Width = 180
+        FieldName = 'cNOME_US'
+      end    
+      item
+        Title.Caption = 'Login'
+        Width = 180
+        FieldName = 'cLOGIN_US'
+      end>
+    DataSource = DataSourceUsuario
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+    TabOrder = 5
+  end
+  object EditEstado: TEdit
+    Left = 352
+    Height = 23
+    Top = 144
+    Width = 16
+    TabOrder = 6
+    Visible = False
+  end
+  object BitBtnInsert: TBitBtn
+    Left = 2
+    Height = 24
+    Top = 4
+    Width = 80
+    Align = alCustom
+    Caption = 'Novo'
+    Default = True
+    OnClick = BitBtnInsertClick
+    TabOrder = 7
+  end
+  object BitBtnDelete: TBitBtn
+    Left = 83
+    Height = 24
+    Top = 4
+    Width = 80
+    Align = alCustom
+    Cancel = True
+    Caption = 'Excluir'
+    OnClick = BitBtnDeleteClick
+    TabOrder = 8
+  end
+  object BitBtnEdit: TBitBtn
+    Left = 165
+    Height = 24
+    Top = 4
+    Width = 80
+    Align = alCustom
+    Caption = 'Editar'
+    OnClick = BitBtnEditClick
+    TabOrder = 9
+  end
+  object BitBtnPost: TBitBtn
+    Left = 247
+    Height = 24
+    Top = 4
+    Width = 80
+    Align = alCustom
+    Caption = 'Salvar'
+    Enabled = False
+    OnClick = BitBtnPostClick
+    TabOrder = 10
+  end
+  object BitBtnCancel: TBitBtn
+    Left = 328
+    Height = 24
+    Top = 4
+    Width = 80
+    Align = alCustom
+    Caption = 'Cancelar'
+    Enabled = False
+    OnClick = BitBtnCancelClick
+    TabOrder = 11
+  end
+  object DataSourceUsuario: TDataSource
+    DataSet = DataModuleDB.SQLQueryUsuarios
+    left = 344
+    top = 72
+  end
+end

@@ -1,0 +1,87 @@
+procedure TForm1.ExportUsingFPSExport(MultipleSheets: Boolean;
+  var DataFileName: string);
+var
+  Exporter: TFPSExport;
+  ExportSettings: TFPSExportFormatSettings;
+begin
+  FExportDataset.Open;
+  // TCustomDatasetExporter dsecendants like TFPSExport will start to export
+  // from current record so make sure we get everything
+  FExportDataset.First;
+
+  Exporter := TFPSExport.Create(nil);
+  ExportSettings := TFPSExportFormatSettings.Create(true);
+  try
+    // Write header row with field names
+    ExportSettings.HeaderRow := true;
+    case FILE_FORMATS[RgFileFormat.ItemIndex] of
+      sfExcel2, sfExcel5:
+        begin
+          ShowMessage('Format not supported using this mode.');
+          exit;
+        end;
+      sfExcel8:
+        ExportSettings.ExportFormat := efXLS;
+      sfOOXML:
+        ExportSettings.ExportFormat := efXLSX;
+      sfOpenDocument:
+        ExportSettings.ExportFormat := efODS;
+      else
+        begin
+          ShowMessage('Unknown export format. Please correct the source code.');
+          exit;
+        end;
+    end;
+    // Actually apply settings
+    Exporter.FormatSettings := ExportSettings;
+
+    // Write
+    Exporter.Dataset := FExportDataset;
+    Exporter.FileName := ChangeFileExt(DataFileName, FILE_EXT[
+      RgFileFormat.ItemIndex]);
+
+    // Export to multiple sheets
+    if MultipleSheets then
+    begin
+      Exporter.MultipleSheets := true;
+      Exporter.OnGetSheetName := @ExporterGetSheetNameHandler;
+
+      // On the first sheet we want "Last name", "First name" and "City"
+      Exporter.ExportFields.AddField('Last name');
+      Exporter.ExportFields.AddField('First name');
+      Exporter.ExportFields.AddField('City');
+      Exporter.Execute;
+
+      // On the second sheet we want "Last name", "First name" and "Birthday"
+      Exporter.ExportFields.Clear;
+      Exporter.ExportFields.AddField('Last name');
+      Exporter.ExportFields.AddField('First name');
+      Exporter.ExportFields.AddField('Birthday');
+      Exporter.Execute;
+
+      // On the second sheet we want "Last name", "First name" and "Income"
+      Exporter.ExportFields.Clear;
+      Exporter.ExportFields.AddField('Last name');
+      Exporter.ExportFields.AddField('First name');
+      Exporter.ExportFields.AddField('Salary');
+      Exporter.Execute;
+
+      // On the second sheet we want "Last name", "First name" and "Work begin/end times"
+      Exporter.ExportFields.Clear;
+      Exporter.ExportFields.AddField('Last name');
+      Exporter.ExportFields.AddField('First name');
+      Exporter.ExportFields.AddField('Work begin');
+      Exporter.ExportFields.AddField('Work end');
+      Exporter.Execute;
+
+      // Export complete --> we can write to file
+      Exporter.WriteExportFile;
+    end
+    // Export of all records to single sheet
+    else
+      Exporter.Execute;
+  finally
+    Exporter.Free;
+    ExportSettings.Free;
+  end;
+end;                      

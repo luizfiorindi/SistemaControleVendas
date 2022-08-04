@@ -1,0 +1,27 @@
+object FormPrincipal: TFormPrincipal
+  Left = 238
+  Height = 654
+  Top = 111
+  Width = 1165
+  Caption = 'Sistema de Vendas'
+  Menu = MainMenuSistemadeVendas
+  OnClose = FormClose
+  Position = poDefaultSizeOnly
+  LCLVersion = '1.6.0.4'
+  WindowState = wsMaximized
+  object MainMenuSistemadeVendas: TMainMenu
+    left = 320
+    top = 40
+    object MenuItemCadastro: TMenuItem
+      Caption = 'Cadastro'
+      object MenuItemUsuarios: TMenuItem
+        Caption = 'Usuários'
+        OnClick = MenuItemUsuariosClick
+      end
+      object MenuItemClientes: TMenuItem
+        Caption = 'Clientes'
+        OnClick = MenuItemClientesClick
+      end
+    end
+  end
+end

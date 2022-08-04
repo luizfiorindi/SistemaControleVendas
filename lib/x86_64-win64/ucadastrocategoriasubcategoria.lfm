@@ -1,0 +1,62 @@
+object FormCadastroCategoriaSubcategoria: TFormCadastroCategoriaSubcategoria
+  Left = 440
+  Height = 511
+  Top = 245
+  Width = 704
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Cadastro Categoria / Subcategoria'
+  ClientHeight = 511
+  ClientWidth = 704
+  Position = poMainFormCenter
+  LCLVersion = '1.6.4.0'
+  object DBNavigatorCategoria: TDBNavigator
+    Left = 0
+    Height = 25
+    Top = 0
+    Width = 704
+    Align = alTop
+    BevelOuter = bvNone
+    ChildSizing.EnlargeHorizontal = crsScaleChilds
+    ChildSizing.EnlargeVertical = crsScaleChilds
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 100
+    ClientHeight = 25
+    ClientWidth = 704
+    DataSource = DataSourceCategoria
+    Options = []
+    TabOrder = 0
+    VisibleButtons = [nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh]
+  end
+  object DBNavigatorSubCategoria: TDBNavigator
+    Left = 0
+    Height = 25
+    Top = 264
+    Width = 704
+    BevelOuter = bvNone
+    ChildSizing.EnlargeHorizontal = crsScaleChilds
+    ChildSizing.EnlargeVertical = crsScaleChilds
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 100
+    ClientHeight = 25
+    ClientWidth = 704
+    DataSource = DataSourceSubCategoria
+    Options = []
+    TabOrder = 1
+    VisibleButtons = [nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh]
+  end
+  object DataSourceCategoria: TDataSource
+    DataSet = DataModuleDB.SQLQueryCategoria
+    left = 616
+    top = 64
+  end
+  object DataSourceSubCategoria: TDataSource
+    DataSet = DataModuleDB.SQLQuerySubCategoria
+    left = 616
+    top = 296
+  end
+end

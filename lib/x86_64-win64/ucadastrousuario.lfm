@@ -1,0 +1,152 @@
+object FormCadastroUsuarios: TFormCadastroUsuarios
+  Left = 483
+  Height = 377
+  Top = 140
+  Width = 411
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Cadastro de Usuário'
+  ClientHeight = 377
+  ClientWidth = 411
+  OnClose = FormClose
+  OnShow = FormShow
+  Position = poMainFormCenter
+  LCLVersion = '1.6.0.4'
+  object DBNavigatorUsuario: TDBNavigator
+    Left = 0
+    Height = 25
+    Top = 0
+    Width = 411
+    Align = alTop
+    BevelOuter = bvNone
+    ChildSizing.EnlargeHorizontal = crsScaleChilds
+    ChildSizing.EnlargeVertical = crsScaleChilds
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 100
+    ClientHeight = 25
+    ClientWidth = 411
+    Color = clForm
+    DataSource = DataSourceUsuario
+    OnClick = DBNavigatorUsuarioClick
+    Options = []
+    ParentColor = False
+    TabOrder = 0
+    VisibleButtons = [nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh]
+  end
+  object DBEditNome: TDBEdit
+    Left = 8
+    Height = 23
+    Top = 56
+    Width = 288
+    DataField = 'cNOME_US'
+    DataSource = DataSourceUsuario
+    ReadOnly = True
+    CharCase = ecNormal
+    MaxLength = 0
+    TabOrder = 1
+  end
+  object DBEditLogin: TDBEdit
+    Left = 8
+    Height = 23
+    Top = 101
+    Width = 288
+    DataField = 'cLOGIN_US'
+    DataSource = DataSourceUsuario
+    ReadOnly = True
+    CharCase = ecNormal
+    MaxLength = 0
+    TabOrder = 2
+  end
+  object DBEditSenha: TDBEdit
+    Left = 8
+    Height = 23
+    Top = 143
+    Width = 288
+    DataField = 'cSENHA_US'
+    DataSource = DataSourceUsuario
+    ReadOnly = True
+    CharCase = ecNormal
+    MaxLength = 0
+    PasswordChar = '*'
+    TabOrder = 3
+  end
+  object Label1: TLabel
+    Left = 8
+    Height = 15
+    Top = 40
+    Width = 33
+    Caption = 'Nome'
+    ParentColor = False
+  end
+  object Label2: TLabel
+    Left = 8
+    Height = 15
+    Top = 85
+    Width = 30
+    Caption = 'Login'
+    ParentColor = False
+  end
+  object Senha: TLabel
+    Left = 8
+    Height = 15
+    Top = 127
+    Width = 32
+    Caption = 'Senha'
+    ParentColor = False
+  end
+  object DBCheckBoxAdmin: TDBCheckBox
+    Left = 8
+    Height = 23
+    Top = 184
+    Width = 98
+    Caption = 'Administrador'
+    DataField = 'cPERMISSAO_US'
+    DataSource = DataSourceUsuario
+    ReadOnly = True
+    TabOrder = 4
+    ValueChecked = 'A'
+    ValueUnchecked = 'U'
+  end
+  object DBCheckBoxStatus: TDBCheckBox
+    Left = 144
+    Height = 23
+    Top = 184
+    Width = 90
+    Caption = 'Ativo'
+    DataField = 'cSTATUS_US'
+    DataSource = DataSourceUsuario
+    ReadOnly = True
+    TabOrder = 5
+    ValueChecked = '1'
+    ValueUnchecked = '0'
+  end
+  object DBGridUsuarios: TDBGrid
+    Left = 0
+    Height = 157
+    Top = 220
+    Width = 411
+    Align = alBottom
+    Color = clWindow
+    Columns = <    
+      item
+        Title.Caption = 'Nome'
+        Width = 180
+        FieldName = 'cNOME_US'
+      end    
+      item
+        Title.Caption = 'Login'
+        Width = 180
+        FieldName = 'cLOGIN_US'
+      end>
+    DataSource = DataSourceUsuario
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+    TabOrder = 6
+  end
+  object DataSourceUsuario: TDataSource
+    DataSet = DataModuleDB.SQLQueryUsuarios
+    left = 344
+    top = 72
+  end
+end
