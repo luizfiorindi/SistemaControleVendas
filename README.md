@@ -1,5 +1,5 @@
 # SistemaControleVendas
-Sistema de controle de vendas, para controlar vendas realizadas em plataformas de terceiros ou vendas próprias.
+Sistema de controle de vendas criado em Lazarus, para controlar vendas realizadas em plataformas de terceiros ou vendas próprias.
 Cadastro de clientes
 Cadastro de produtos
 Controle de estoque
