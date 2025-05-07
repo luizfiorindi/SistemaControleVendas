@@ -1,0 +1,36 @@
+object FormEtiqueta: TFormEtiqueta
+  Left = 782
+  Height = 161
+  Top = 232
+  Width = 307
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Etiqueta de Venda'
+  ClientHeight = 161
+  ClientWidth = 307
+  OnClose = FormClose
+  OnShow = FormShow
+  Position = poMainFormCenter
+  LCLVersion = '1.6.0.4'
+  object ButtonPreview: TButton
+    Left = 120
+    Height = 57
+    Top = 40
+    Width = 75
+    Caption = 'Visualizar'
+    OnClick = ButtonPreviewClick
+    TabOrder = 0
+  end
+  object frReportEtiqueta: TfrReport
+    InitialZoom = pzDefault
+    Options = []
+    PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
+    DataType = dtDataSet
+    left = 232
+    top = 104
+  end
+  object frDesignerEtiqueta: TfrDesigner
+    left = 64
+    top = 104
+  end
+end

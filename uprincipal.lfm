@@ -1,0 +1,108 @@
+object FormPrincipal: TFormPrincipal
+  Left = 247
+  Height = 654
+  Top = 125
+  Width = 1165
+  Caption = 'Sistema de Vendas'
+  ClientHeight = 634
+  ClientWidth = 1165
+  Menu = MainMenuSistemadeVendas
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnShow = FormShow
+  Position = poDefaultSizeOnly
+  LCLVersion = '1.6.0.4'
+  WindowState = wsMaximized
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 611
+    Width = 1165
+    Panels = <    
+      item
+        Text = 'Usuário:'
+        Width = 50
+      end    
+      item
+        Text = 'admin'
+        Width = 50
+      end>
+    SimplePanel = False
+  end
+  object MainMenuSistemadeVendas: TMainMenu
+    left = 320
+    top = 40
+    object MenuItemCadastro: TMenuItem
+      Caption = 'Cadastro'
+      object MenuItemUsuarios: TMenuItem
+        Caption = 'Usuários'
+        OnClick = MenuItemUsuariosClick
+      end
+      object MenuItemClientes: TMenuItem
+        Caption = 'Clientes'
+        OnClick = MenuItemClientesClick
+      end
+      object MenuItemCadastroCategoria: TMenuItem
+        Caption = 'Categoria / Sub-Categoria'
+        OnClick = MenuItemCadastroCategoriaClick
+      end
+      object MenuItemProduto: TMenuItem
+        Caption = 'Produtos'
+        OnClick = MenuItemProdutoClick
+      end
+    end
+    object MenuItemEstoque: TMenuItem
+      Caption = 'Estoque'
+      object MenuItemEstoqueProdutos: TMenuItem
+        Caption = 'Produtos'
+        OnClick = MenuItemEstoqueProdutosClick
+      end
+    end
+    object MenuItemPedido: TMenuItem
+      Caption = 'Vendas'
+      object MenuItemPedidoNovo: TMenuItem
+        Caption = 'Nova'
+        OnClick = MenuItemPedidoNovoClick
+      end
+      object MenuItemVendaConsulta: TMenuItem
+        Caption = 'Consultar'
+        OnClick = MenuItemVendaConsultaClick
+      end
+    end
+    object MenuItemRelatorio: TMenuItem
+      Caption = 'Relatório'
+      object MenuItemRelatorioEstoque: TMenuItem
+        Caption = 'Estoque'
+        OnClick = MenuItemRelatorioEstoqueClick
+      end
+      object MenuItemRelatorioVendas: TMenuItem
+        Caption = 'Vendas'
+        OnClick = MenuItemRelatorioVendasClick
+      end
+    end
+    object MenuItemSair: TMenuItem
+      Caption = 'Sair'
+      OnClick = MenuItemSairClick
+    end
+  end
+  object FPDataExporter1: TFPDataExporter
+    left = 464
+    top = 40
+  end
+  object FPSExport1: TFPSExport
+    ExportFields = <>
+    FormatSettings.IntegerFormat = '%d'
+    FormatSettings.DecimalSeparator = ','
+    FormatSettings.CurrencySymbol = 'R$'
+    FormatSettings.CurrencyDigits = 0
+    FormatSettings.BooleanTrue = 'True'
+    FormatSettings.BooleanFalse = 'False'
+    FormatSettings.DateFormat = 'dd/MM/yyyy'
+    FormatSettings.TimeFormat = 'hh:nn'
+    FormatSettings.DateTimeFormat = 'dd/MM/yyyy hh:nn'
+    FormatSettings.ExportFormat = efXLS
+    FormatSettings.SheetName = 'Sheet'
+    left = 560
+    top = 40
+  end
+end

@@ -1,0 +1,74 @@
+CREATE TABLE TB_USUARIOS( cLOGIN_US      VARCHAR(50)  NOT NULL PRIMARY KEY
+                        , cNOME_US       VARCHAR(50)  NOT NULL
+                        , cSENHA_US      VARCHAR(200) NOT NULL
+                        , cPERMISSAO_US  VARCHAR(30)  NOT NULL
+                        , cSTATUS_US     VARCHAR(1)   NOT NULL
+                        );
+
+CREATE TABLE TB_CLIENTES( iID_CL          INTEGER PRIMARY KEY AUTOINCREMENT
+                        , nCGC_CL         DECIMAL(14,0) NOT NULL
+                        , cRAZAO_CL       VARCHAR(100) NOT NULL
+                        , cENDERECO_CL    VARCHAR(100) NOT NULL
+                        , cNUMERO_CL      VARCHAR(20) NOT NULL
+                        , cCOMPLEMENTO_CL VARCHAR(50)
+                        , cBAIRRO_CL      VARCHAR(50) NOT NULL
+                        , cCIDADE_CL      VARCHAR(50) NOT NULL
+                        , cUF_CL          VARCHAR(2) NOT NULL
+                        , cCEP_CL         FLOAT NOT NULL
+                        );
+
+CREATE TABLE TB_CATEGORIA( iID_CA INTEGER PRIMARY KEY AUTOINCREMENT
+                         , cDESCRICAO_CA  VARCHAR(50) NOT NULL
+                         );
+
+CREATE TABLE TB_SUBCATEGORIA( iID_SC INTEGER PRIMARY KEY AUTOINCREMENT
+			    , iID_CATEGORIA_SC INTEGER
+                            , cDESCRICAO_SC  VARCHAR(50) NOT NULL
+			    , FOREIGN KEY(iID_CATEGORIA_SC) REFERENCES TB_CATEGORIA(iID_CA)
+                            );
+
+CREATE TABLE TB_PRODUTOS( iCODIGO_PR          INTEGER PRIMARY KEY AUTOINCREMENT
+                        , cDESCRICAO_PR       VARCHAR(100) NOT NULL
+                        , nVALOR_PR           FLOAT NOT NULL
+                        , iID_CATEGORIA_PR    INTEGER NOT NULL
+                        , iID_SUBCATEGORIA_PR INTEGER NOT NULL
+                        , FOREIGN KEY(iID_CATEGORIA_PR)    REFERENCES TB_CATEGORIA(iID_CA)
+                        , FOREIGN KEY(iID_SUBCATEGORIA_PR) REFERENCES TB_SUBCATEGORIA(iID_SC)
+                        );
+
+CREATE TABLE TB_ESTOQUE_PRODUTOS( iCOD_PRODUTO_EP   INTEGER NOT NULL
+                                , iSALDO_EP         INTEGER NOT NULL
+                                , dDATA_ALTERA_EP   DATETIME NOT NULL
+                                , cLOGIN_USUARIO_EP VARCHAR(50) NOT NULL
+                                , FOREIGN KEY(iCOD_PRODUTO_EP) REFERENCES TB_PRODUTOS(iCODIGO_PR)
+                                , FOREIGN KEY(cLOGIN_USUARIO_EP) REFERENCES TB_USUARIOS(cLOGIN_US)
+                                );
+
+CREATE TABLE TB_PEDIDOS( iID_PE            INTEGER PRIMARY KEY AUTOINCREMENT
+                       , iID_CLIENTE_PE    INTEGER NOT NULL
+                       , cRAZAO_PE         VARCHAR(100) NOT NULL
+                       , cENDERECO_PE      VARCHAR(100) NOT NULL
+                       , cNUMERO_PE        VARCHAR(20) NOT NULL
+                       , cCOMPLEMENTO_PE   VARCHAR(50)
+                       , cBAIRRO_PE        VARCHAR(50) NOT NULL
+                       , cCIDADE_PE        VARCHAR(50) NOT NULL
+                       , cUF_PE            VARCHAR(2) NOT NULL
+                       , nCEP_PE           FLOAT NOT NULL
+                       , dDATA_PE          DATETIME NOT NULL
+                       , cLOGIN_USUARIO_PE VARCHAR(50) NOT NULL
+                       , cSTATUS_PE        VARCHAR(1)
+                       , FOREIGN KEY(iID_CLIENTE_PE) REFERENCES TB_CLIENTES(iID_CL)
+                       , FOREIGN KEY(cLOGIN_USUARIO_PE) REFERENCES TB_USUARIOS(cLOGIN_US)
+                       );
+
+CREATE TABLE TB_ITENS_PEDIDO( iID_IP            INTEGER PRIMARY KEY AUTOINCREMENT
+                            , iID_PEDIDO_IP     INTEGER NOT NULL
+                            , iID_PRODUTO_IP    INTEGER NOT NULL
+                            , nVALOR_PRODUTO_IP FLOAT NOT NULL
+                            , iQTDE_PRODUTO_IP  INTEGER NOT NULL
+                            , dDATA_IP          DATETIME NOT NULL
+                            , cLOGIN_USUARIO_IP VARCHAR(50) NOT NULL
+                            , FOREIGN KEY(iID_PEDIDO_IP) REFERENCES TB_PEDIDOS(iID_PE)
+                            , FOREIGN KEY(iID_PRODUTO_IP) REFERENCES TB_PRODUTOS(iCODIGO_PR)
+                            , FOREIGN KEY(cLOGIN_USUARIO_IP) REFERENCES TB_USUARIOS(cLOGIN_US)
+                            );

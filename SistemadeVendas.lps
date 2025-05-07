@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="32">
+      <Unit0>
+        <Filename Value="SistemadeVendas.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2"/>
+        <CursorPos X="20" Y="12"/>
+        <UsageCount Value="202"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="uprincipal.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormPrincipal"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uPrincipal"/>
+        <TopLine Value="107"/>
+        <CursorPos X="23" Y="115"/>
+        <UsageCount Value="202"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="udatamoduledb.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DataModuleDB"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="uDataModuleDB"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="348"/>
+        <CursorPos X="44" Y="357"/>
+        <UsageCount Value="202"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="ucadastrousuario.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormCadastroUsuarios"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uCadastroUsuario"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="134"/>
+        <CursorPos X="38" Y="146"/>
+        <UsageCount Value="200"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="ucadastrocliente.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormCadastroCliente"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="107"/>
+        <CursorPos X="46" Y="123"/>
+        <UsageCount Value="181"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="ucadastrocategoriasubcategoria.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormCadastroCategoriaSubcategoria"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="51"/>
+        <CursorPos X="12" Y="64"/>
+        <UsageCount Value="159"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="ucadastroproduto.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormCadastroProduto"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="60"/>
+        <CursorPos X="22" Y="73"/>
+        <UsageCount Value="146"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="uestoqueproduto.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormEstoqueProduto"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="193"/>
+        <CursorPos X="110" Y="206"/>
+        <UsageCount Value="126"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="upedido.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormPedido"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="308"/>
+        <CursorPos X="49" Y="317"/>
+        <UsageCount Value="101"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="ubuscacliente.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormBuscaCliente"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="50"/>
+        <CursorPos X="50" Y="72"/>
+        <UsageCount Value="92"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="ubuscaproduto.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormBuscaProduto"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="59"/>
+        <CursorPos X="11" Y="71"/>
+        <UsageCount Value="84"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="uconsultapedido.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormConsultaPedidos"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="139"/>
+        <CursorPos X="3" Y="125"/>
+        <UsageCount Value="67"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="uetiqueta.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormEtiqueta"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="53"/>
+        <CursorPos X="3" Y="70"/>
+        <UsageCount Value="59"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="urelatorioestoque.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormRelatorioEstoque"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="93"/>
+        <CursorPos X="31" Y="111"/>
+        <UsageCount Value="50"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="urelpedidos.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormRelatorioPedidos"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="133"/>
+        <CursorPos X="94" Y="132"/>
+        <UsageCount Value="43"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="ulogin.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormLogin"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="83"/>
+        <CursorPos X="29" Y="91"/>
+        <UsageCount Value="37"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="ualterasenha.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormAlteraSenha"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="47"/>
+        <CursorPos X="54" Y="61"/>
+        <UsageCount Value="32"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="C:\lazarus\lcl\include\application.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2146"/>
+        <CursorPos Y="2163"/>
+        <UsageCount Value="7"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="C:\lazarus\lcl\dbctrls.pp"/>
+        <UnitName Value="DbCtrls"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1166"/>
+        <CursorPos X="27" Y="1175"/>
+        <UsageCount Value="10"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="C:\lazarus\lcl\include\dbcustomnavigator.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="15"/>
+        <CursorPos Y="27"/>
+        <UsageCount Value="1"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="C:\lazarus\lcl\include\control.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2723"/>
+        <CursorPos Y="2736"/>
+        <UsageCount Value="7"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="C:\lazarus\fpc\3.0.0\source\packages\fcl-db\src\base\db.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1326"/>
+        <CursorPos X="53" Y="1344"/>
+        <UsageCount Value="6"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="C:\lazarus\lcl\interfaces\win32\win32winapi.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2405"/>
+        <CursorPos X="66" Y="2424"/>
+        <UsageCount Value="7"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="C:\lazarus\lcl\include\statuspanels.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="16"/>
+        <CursorPos Y="28"/>
+        <UsageCount Value="7"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="C:\lazarus\fpc\3.0.0\source\rtl\objpas\classes\classesh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="862"/>
+        <CursorPos X="14" Y="705"/>
+        <UsageCount Value="7"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="C:\lazarus\fpc\3.0.0\source\rtl\objpas\sysutils\sysstrh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="19"/>
+        <CursorPos X="4" Y="27"/>
+        <UsageCount Value="7"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="C:\lazarus\lcl\dialogs.pp"/>
+        <UnitName Value="Dialogs"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="495"/>
+        <CursorPos X="10" Y="509"/>
+        <UsageCount Value="7"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="C:\lazarus\lcl\forms.pp"/>
+        <UnitName Value="Forms"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="370"/>
+        <CursorPos X="3" Y="375"/>
+        <UsageCount Value="7"/>
+      </Unit27>
+      <Unit28>
+        <Filename Value="C:\lazarus\lcl\include\messagedialogs.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="165"/>
+        <CursorPos Y="176"/>
+        <UsageCount Value="7"/>
+      </Unit28>
+      <Unit29>
+        <Filename Value="C:\lazarus\lcl\include\menuitem.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="269"/>
+        <CursorPos Y="287"/>
+        <UsageCount Value="8"/>
+      </Unit29>
+      <Unit30>
+        <Filename Value="..\..\Downloads\fpspreadsheet-1.8.1\source\laz_fpspreadsheet.lpk"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="8"/>
+        <DefaultSyntaxHighlighter Value="XML"/>
+      </Unit30>
+      <Unit31>
+        <Filename Value="C:\lazarus\lcl\dbgrids.pas"/>
+        <UnitName Value="DBGrids"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2760"/>
+        <CursorPos Y="2771"/>
+        <UsageCount Value="8"/>
+      </Unit31>
+    </Units>
+    <JumpHistory HistoryIndex="-1"/>
+  </ProjectSession>
+</CONFIG>

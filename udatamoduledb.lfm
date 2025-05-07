@@ -1,0 +1,1089 @@
+object DataModuleDB: TDataModuleDB
+  OnCreate = DataModuleCreate
+  OldCreateOrder = False
+  Height = 420
+  HorizontalOffset = 609
+  VerticalOffset = 45
+  Width = 442
+  object SQLScriptTabelas: TSQLScript
+    DataBase = SQLite3Connection
+    Transaction = SQLTransaction
+    Directives.Strings = (
+      'SET TERM'
+      'COMMIT WORK'
+      'COMMIT RETAIN'
+      'COMMIT'
+      '#IFDEF'
+      '#IFNDEF'
+      '#ELSE'
+      '#ENDIF'
+      '#DEFINE'
+      '#UNDEF'
+      '#UNDEFINE'
+    )
+    Script.Strings = (
+      'CREATE TABLE TB_USUARIOS( cLOGIN_US      VARCHAR(50)  NOT NULL PRIMARY KEY'
+      '                        , cNOME_US       VARCHAR(50)  NOT NULL'
+      '                        , cSENHA_US      VARCHAR(200) NOT NULL'
+      '                        , cPERMISSAO_US  VARCHAR(30)  NOT NULL'
+      '                        , cSTATUS_US     VARCHAR(1)   NOT NULL'
+      '                        );'
+      ''
+      'CREATE TABLE TB_CLIENTES( iID_CL          INTEGER PRIMARY KEY AUTOINCREMENT'
+      '                        , nCGC_CL         VARCHAR(14) UNIQUE NOT NULL'
+      '                        , cRAZAO_CL       VARCHAR(100) NOT NULL'
+      '                        , cENDERECO_CL    VARCHAR(100) NOT NULL'
+      '                        , cNUMERO_CL      VARCHAR(20) NOT NULL'
+      '                        , cCOMPLEMENTO_CL VARCHAR(50)'
+      '                        , cBAIRRO_CL      VARCHAR(50) NOT NULL'
+      '                        , cCIDADE_CL      VARCHAR(50) NOT NULL'
+      '                        , cUF_CL          VARCHAR(2) NOT NULL'
+      '                        , cCEP_CL         VARCHAR(8) NOT NULL'
+      '                        );'
+      ''
+      'CREATE TABLE TB_CATEGORIA( iID_CA INTEGER PRIMARY KEY AUTOINCREMENT'
+      '                         , cDESCRICAO_CA  VARCHAR(50) NOT NULL'
+      '                         );'
+      ''
+      'CREATE TABLE TB_SUBCATEGORIA( iID_SC INTEGER   PRIMARY KEY AUTOINCREMENT'
+      #9#9#9'                      , iID_CATEGORIA_SC INTEGER'
+      '                            , cDESCRICAO_SC    VARCHAR(50) NOT NULL'
+      '                  '#9#9#9'    , FOREIGN KEY(iID_CATEGORIA_SC) REFERENCES TB_CATEGORIA(iID_CA)'
+      '                            );'
+      ''
+      'CREATE TABLE TB_PRODUTOS( iCODIGO_PR          INTEGER PRIMARY KEY AUTOINCREMENT'
+      '                        , cDESCRICAO_PR       VARCHAR(100) NOT NULL'
+      '                        , nVALOR_PR           FLOAT NOT NULL'
+      '                        , iID_CATEGORIA_PR    INTEGER NOT NULL'
+      '                        , iID_SUBCATEGORIA_PR INTEGER NOT NULL'
+      '                        , FOREIGN KEY(iID_CATEGORIA_PR)    REFERENCES TB_CATEGORIA(iID_CA)'
+      '                        , FOREIGN KEY(iID_SUBCATEGORIA_PR) REFERENCES TB_SUBCATEGORIA(iID_SC)'
+      '                        );'
+      ''
+      'CREATE TABLE TB_ESTOQUE_PRODUTOS( iCOD_PRODUTO_EP   INTEGER NOT NULL'
+      '                                , iSALDO_EP         INTEGER NOT NULL'
+      '                                , dDATA_ALTERA_EP   DATETIME NOT NULL'
+      '                                , cLOGIN_USUARIO_EP VARCHAR(50) NOT NULL'
+      '                                , FOREIGN KEY(iCOD_PRODUTO_EP) REFERENCES TB_PRODUTOS(iCODIGO_PR)'
+      '                                , FOREIGN KEY(cLOGIN_USUARIO_EP) REFERENCES TB_USUARIOS(cLOGIN_US)'
+      '                                );'
+      ''
+      'CREATE TABLE TB_PEDIDOS( iID_PE            INTEGER PRIMARY KEY AUTOINCREMENT'
+      '                       , iID_CLIENTE_PE    INTEGER NOT NULL'
+      '                       , cRAZAO_PE         VARCHAR(100) NOT NULL'
+      '                       , cENDERECO_PE      VARCHAR(100) NOT NULL'
+      '                       , cNUMERO_PE        VARCHAR(20) NOT NULL'
+      '                       , cCOMPLEMENTO_PE   VARCHAR(50)'
+      '                       , cBAIRRO_PE        VARCHAR(50) NOT NULL'
+      '                       , cCIDADE_PE        VARCHAR(50) NOT NULL'
+      '                       , cUF_PE            VARCHAR(2) NOT NULL'
+      '                       , nCEP_PE           FLOAT NOT NULL'
+      '                       , dDATA_PE          DATETIME NOT NULL'
+      '                       , cLOGIN_USUARIO_PE VARCHAR(50) NOT NULL'
+      '                       , cSTATUS_PE        VARCHAR(1)'
+      '                       , FOREIGN KEY(iID_CLIENTE_PE) REFERENCES TB_CLIENTES(iID_CL)'
+      '                       , FOREIGN KEY(cLOGIN_USUARIO_PE) REFERENCES TB_USUARIOS(cLOGIN_US)'
+      '                       );'
+      ''
+      'CREATE TABLE TB_ITENS_PEDIDO( iID_IP            INTEGER PRIMARY KEY AUTOINCREMENT'
+      '                            , iID_PEDIDO_IP     INTEGER NOT NULL'
+      '                            , iID_PRODUTO_IP    INTEGER NOT NULL'
+      '                            , nVALOR_PRODUTO_IP FLOAT NOT NULL'
+      '                            , iQTDE_PRODUTO_IP  INTEGER NOT NULL'
+      '                            , dDATA_IP          DATETIME NOT NULL'
+      '                            , cLOGIN_USUARIO_IP VARCHAR(50) NOT NULL'
+      '                            , FOREIGN KEY(iID_PEDIDO_IP) REFERENCES TB_PEDIDOS(iID_PE)'
+      '                            , FOREIGN KEY(iID_PRODUTO_IP) REFERENCES TB_PRODUTOS(iCODIGO_PR)'
+      '                            , FOREIGN KEY(cLOGIN_USUARIO_IP) REFERENCES TB_USUARIOS(cLOGIN_US)'
+      '                            );'
+      ''
+      'INSERT INTO TB_USUARIOS ( cLOGIN_US'
+      '                        , cNOME_US'
+      '                        , cSENHA_US'
+      '                        , cPERMISSAO_US'
+      '                        , cSTATUS_US'
+      '                        )'
+      'VALUES ( ''admin'''
+      '       , ''Administrador'''
+      '       , ''admin'''
+      '       , ''A'''
+      '       , ''1'''
+      '       );'
+    )
+    Terminator = ';'
+    CommentsinSQL = True
+    UseSetTerm = True
+    UseCommit = True
+    UseDefines = True
+    left = 320
+    top = 24
+  end
+  object SQLite3Connection: TSQLite3Connection
+    Connected = False
+    LoginPrompt = False
+    KeepConnection = False
+    Params.Strings = (
+      'foreign_keys=on'
+    )
+    Transaction = SQLTransaction
+    Options = []
+    left = 64
+    top = 24
+  end
+  object SQLTransaction: TSQLTransaction
+    Active = False
+    Database = SQLite3Connection
+    Options = []
+    left = 192
+    top = 24
+  end
+  object SQLQueryUsuarios: TSQLQuery
+    FieldDefs = <>
+    AfterDelete = SQLQueryUsuariosAfterDelete
+    AfterPost = SQLQueryUsuariosAfterPost
+    Database = SQLite3Connection
+    Transaction = SQLTransaction
+    SQL.Strings = (
+      'SELECT *'
+      '  FROM TB_USUARIOS'
+    )
+    DeleteSQL.Strings = (
+      'DELETE FROM TB_USUARIOS'
+      ' WHERE cLOGIN_US = :cLOGIN_US;'
+    )
+    Options = []
+    Params = <>
+    UpdateMode = upWhereChanged
+    left = 64
+    top = 104
+    object SQLQueryUsuarioscLOGIN_US1: TStringField
+      DisplayLabel = 'Login'
+      FieldKind = fkData
+      FieldName = 'cLOGIN_US'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object SQLQueryUsuarioscNOME_US1: TStringField
+      DisplayLabel = 'Nome'
+      FieldKind = fkData
+      FieldName = 'cNOME_US'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object SQLQueryUsuarioscSENHA_US1: TStringField
+      DisplayLabel = 'Senha'
+      FieldKind = fkData
+      FieldName = 'cSENHA_US'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Visible = False
+      Size = 200
+    end
+    object SQLQueryUsuarioscPERMISSAO_US1: TStringField
+      DisplayLabel = 'Permissão'
+      FieldKind = fkData
+      FieldName = 'cPERMISSAO_US'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object SQLQueryUsuarioscSTATUS_US1: TStringField
+      DisplayLabel = 'Ativo'
+      FieldKind = fkData
+      FieldName = 'cSTATUS_US'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1
+    end
+  end
+  object SQLQueryClientes: TSQLQuery
+    FieldDefs = <>
+    AfterDelete = SQLQueryClientesAfterDelete
+    AfterPost = SQLQueryClientesAfterPost
+    Database = SQLite3Connection
+    Transaction = SQLTransaction
+    SQL.Strings = (
+      'SELECT * FROM TB_CLIENTES'
+    )
+    DeleteSQL.Strings = (
+      'DELETE FROM TB_CLIENTES'
+      ' WHERE iID_CL = :iID_CL'
+    )
+    Options = []
+    Params = <>
+    UpdateMode = upWhereChanged
+    left = 192
+    top = 104
+    object SQLQueryClientesiID_CL1: TLongintField
+      DisplayLabel = 'Código'
+      FieldKind = fkData
+      FieldName = 'iID_CL'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryClientesnCGC_CL1: TStringField
+      FieldKind = fkData
+      FieldName = 'nCGC_CL'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 14
+    end
+    object SQLQueryClientescRAZAO_CL1: TStringField
+      DisplayLabel = 'Nome/Razão'
+      FieldKind = fkData
+      FieldName = 'cRAZAO_CL'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object SQLQueryClientescENDERECO_CL1: TStringField
+      DisplayLabel = 'Endereço'
+      FieldKind = fkData
+      FieldName = 'cENDERECO_CL'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object SQLQueryClientescNUMERO_CL1: TStringField
+      DisplayLabel = 'Número'
+      FieldKind = fkData
+      FieldName = 'cNUMERO_CL'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryClientescCOMPLEMENTO_CL1: TStringField
+      DisplayLabel = 'Complemento'
+      FieldKind = fkData
+      FieldName = 'cCOMPLEMENTO_CL'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object SQLQueryClientescBAIRRO_CL1: TStringField
+      DisplayLabel = 'Bairro'
+      FieldKind = fkData
+      FieldName = 'cBAIRRO_CL'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object SQLQueryClientescCIDADE_CL1: TStringField
+      DisplayLabel = 'Cidade'
+      FieldKind = fkData
+      FieldName = 'cCIDADE_CL'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object SQLQueryClientescUF_CL1: TStringField
+      DisplayLabel = 'UF'
+      FieldKind = fkData
+      FieldName = 'cUF_CL'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2
+    end
+    object SQLQueryClientescCEP_CL1: TStringField
+      FieldKind = fkData
+      FieldName = 'cCEP_CL'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 8
+    end
+  end
+  object SQLQueryCategoria: TSQLQuery
+    FieldDefs = <>
+    AfterDelete = SQLQueryCategoriaAfterDelete
+    AfterPost = SQLQueryCategoriaAfterPost
+    Database = SQLite3Connection
+    Transaction = SQLTransaction
+    SQL.Strings = (
+      'SELECT *'
+      '  FROM TB_CATEGORIA'
+    )
+    DeleteSQL.Strings = (
+      'DELETE'
+      '  FROM TB_CATEGORIA'
+      ' WHERE iID_CA = :iID_CA'
+    )
+    Options = []
+    Params = <>
+    UpdateMode = upWhereChanged
+    left = 320
+    top = 104
+    object SQLQueryCategoriaiID_CA1: TLongintField
+      DisplayLabel = 'Código'
+      FieldKind = fkData
+      FieldName = 'iID_CA'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryCategoriacDESCRICAO_CA1: TStringField
+      DisplayLabel = 'Descrição'
+      FieldKind = fkData
+      FieldName = 'cDESCRICAO_CA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+  end
+  object SQLQuerySubCategoria: TSQLQuery
+    FieldDefs = <>
+    AfterDelete = SQLQuerySubCategoriaAfterDelete
+    AfterPost = SQLQuerySubCategoriaAfterPost
+    Database = SQLite3Connection
+    Transaction = SQLTransaction
+    SQL.Strings = (
+      'SELECT *'
+      '  FROM TB_SUBCATEGORIA'
+    )
+    DeleteSQL.Strings = (
+      'DELETE'
+      '  FROM TB_SUBCATEGORIA'
+      ' WHERE iID_SC = :iID_SC'
+    )
+    Options = []
+    Params = <>
+    UpdateMode = upWhereChanged
+    left = 64
+    top = 176
+    object SQLQuerySubCategoriaiID_SC1: TLongintField
+      DisplayLabel = 'Código'
+      FieldKind = fkData
+      FieldName = 'iID_SC'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQuerySubCategoriaiID_CATEGORIA_SC1: TLongintField
+      DisplayLabel = 'Código Categoria'
+      FieldKind = fkData
+      FieldName = 'iID_CATEGORIA_SC'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQuerySubCategoriacDESCRICAO_SC1: TStringField
+      DisplayLabel = 'Descrição'
+      FieldKind = fkData
+      FieldName = 'cDESCRICAO_SC'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+  end
+  object SQLQueryProdutos: TSQLQuery
+    FieldDefs = <>
+    AfterDelete = SQLQueryProdutosAfterDelete
+    AfterPost = SQLQueryProdutosAfterPost
+    Database = SQLite3Connection
+    Transaction = SQLTransaction
+    SQL.Strings = (
+      'SELECT *'
+      '  FROM TB_PRODUTOS'
+    )
+    DeleteSQL.Strings = (
+      'DELETE'
+      '  FROM TB_PRODUTOS'
+      ' WHERE iCODIGO_PR = :iCODIGO_PR'
+    )
+    Options = []
+    Params = <>
+    UpdateMode = upWhereChanged
+    left = 192
+    top = 176
+    object SQLQueryProdutosiCODIGO_PR1: TLongintField
+      DisplayLabel = 'Código'
+      FieldKind = fkData
+      FieldName = 'iCODIGO_PR'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryProdutoscDESCRICAO_PR1: TStringField
+      DisplayLabel = 'Descrição'
+      FieldKind = fkData
+      FieldName = 'cDESCRICAO_PR'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object SQLQueryProdutosnVALOR_PR1: TFloatField
+      DisplayLabel = 'Valor'
+      FieldKind = fkData
+      FieldName = 'nVALOR_PR'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+    end
+    object SQLQueryProdutosiID_CATEGORIA_PR1: TLongintField
+      DisplayLabel = 'Categoria'
+      FieldKind = fkData
+      FieldName = 'iID_CATEGORIA_PR'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryProdutosiID_SUBCATEGORIA_PR1: TLongintField
+      DisplayLabel = 'Sub-Categoria'
+      FieldKind = fkData
+      FieldName = 'iID_SUBCATEGORIA_PR'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object SQLQueryEstoqueProdutos: TSQLQuery
+    FieldDefs = <>
+    Database = SQLite3Connection
+    Transaction = SQLTransaction
+    SQL.Strings = (
+      'SELECT *'
+      '  FROM TB_ESTOQUE_PRODUTOS'
+    )
+    Options = []
+    Params = <>
+    UpdateMode = upWhereChanged
+    left = 320
+    top = 176
+    object SQLQueryEstoqueProdutosiCOD_PRODUTO_EP1: TLongintField
+      FieldKind = fkData
+      FieldName = 'iCOD_PRODUTO_EP'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryEstoqueProdutosiSALDO_EP1: TLongintField
+      FieldKind = fkData
+      FieldName = 'iSALDO_EP'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryEstoqueProdutosdDATA_ALTERA_EP1: TDateTimeField
+      FieldKind = fkData
+      FieldName = 'dDATA_ALTERA_EP'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryEstoqueProdutoscLOGIN_USUARIO_EP1: TStringField
+      FieldKind = fkData
+      FieldName = 'cLOGIN_USUARIO_EP'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+  end
+  object SQLQueryExec: TSQLQuery
+    FieldDefs = <>
+    Database = SQLite3Connection
+    Transaction = SQLTransaction
+    Options = []
+    Params = <>
+    left = 64
+    top = 240
+  end
+  object SQLQueryPedidos: TSQLQuery
+    FieldDefs = <>
+    Database = SQLite3Connection
+    Transaction = SQLTransaction
+    SQL.Strings = (
+      'SELECT *'
+      '  FROM TB_PEDIDOS'
+    )
+    Options = []
+    Params = <>
+    UpdateMode = upWhereChanged
+    left = 192
+    top = 240
+    object SQLQueryPedidosiID_PE1: TLongintField
+      FieldKind = fkData
+      FieldName = 'iID_PE'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryPedidosiID_CLIENTE_PE1: TLongintField
+      FieldKind = fkData
+      FieldName = 'iID_CLIENTE_PE'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryPedidoscRAZAO_PE1: TStringField
+      FieldKind = fkData
+      FieldName = 'cRAZAO_PE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object SQLQueryPedidoscENDERECO_PE1: TStringField
+      FieldKind = fkData
+      FieldName = 'cENDERECO_PE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object SQLQueryPedidoscNUMERO_PE1: TStringField
+      FieldKind = fkData
+      FieldName = 'cNUMERO_PE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryPedidoscCOMPLEMENTO_PE1: TStringField
+      FieldKind = fkData
+      FieldName = 'cCOMPLEMENTO_PE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object SQLQueryPedidoscBAIRRO_PE1: TStringField
+      FieldKind = fkData
+      FieldName = 'cBAIRRO_PE'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object SQLQueryPedidoscCIDADE_PE1: TStringField
+      FieldKind = fkData
+      FieldName = 'cCIDADE_PE'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object SQLQueryPedidoscUF_PE1: TStringField
+      FieldKind = fkData
+      FieldName = 'cUF_PE'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2
+    end
+    object SQLQueryPedidosnCEP_PE1: TFloatField
+      FieldKind = fkData
+      FieldName = 'nCEP_PE'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+    end
+    object SQLQueryPedidosdDATA_PE1: TDateTimeField
+      FieldKind = fkData
+      FieldName = 'dDATA_PE'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryPedidoscLOGIN_USUARIO_PE1: TStringField
+      FieldKind = fkData
+      FieldName = 'cLOGIN_USUARIO_PE'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object SQLQueryPedidoscSTATUS_PE1: TStringField
+      FieldKind = fkData
+      FieldName = 'cSTATUS_PE'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1
+    end
+  end
+  object SQLQueryItensPedido: TSQLQuery
+    FieldDefs = <>
+    Database = SQLite3Connection
+    Transaction = SQLTransaction
+    SQL.Strings = (
+      'SELECT TB_ITENS_PEDIDO.*'
+      '     , TB_PRODUTOS.cDESCRICAO_PR'
+      '  FROM TB_ITENS_PEDIDO'
+      '       INNER JOIN TB_PRODUTOS ON TB_PRODUTOS.iCODIGO_PR = TB_ITENS_PEDIDO.iID_PRODUTO_IP'
+      ' WHERE iID_PEDIDO_IP = :iID_PEDIDO_IP'
+    )
+    Options = []
+    Params = <    
+      item
+        DataType = ftInteger
+        Name = 'iID_PEDIDO_IP'
+        ParamType = ptInput
+      end>
+    UpdateMode = upWhereChanged
+    left = 320
+    top = 240
+    object SQLQueryItensPedidoiID_IP1: TLongintField
+      DisplayLabel = 'Código'
+      FieldKind = fkData
+      FieldName = 'iID_IP'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Visible = False
+    end
+    object SQLQueryItensPedidoiID_PEDIDO_IP1: TLongintField
+      DisplayLabel = 'Pedido'
+      FieldKind = fkData
+      FieldName = 'iID_PEDIDO_IP'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Visible = False
+    end
+    object SQLQueryItensPedidoiID_PRODUTO_IP1: TLongintField
+      DisplayLabel = 'Produto'
+      FieldKind = fkData
+      FieldName = 'iID_PRODUTO_IP'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryItensPedidocDESCRICAO_PR1: TStringField
+      DisplayLabel = 'Descrição'
+      FieldKind = fkData
+      FieldName = 'cDESCRICAO_PR'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object SQLQueryItensPedidonVALOR_PRODUTO_IP1: TFloatField
+      DisplayLabel = 'Valor'
+      FieldKind = fkData
+      FieldName = 'nVALOR_PRODUTO_IP'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+    end
+    object SQLQueryItensPedidoiQTDE_PRODUTO_IP1: TLongintField
+      DisplayLabel = 'Quantidade'
+      FieldKind = fkData
+      FieldName = 'iQTDE_PRODUTO_IP'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryItensPedidodDATA_IP1: TDateTimeField
+      DisplayLabel = 'Data'
+      FieldKind = fkData
+      FieldName = 'dDATA_IP'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryItensPedidocLOGIN_USUARIO_IP1: TStringField
+      DisplayLabel = 'Usuário'
+      FieldKind = fkData
+      FieldName = 'cLOGIN_USUARIO_IP'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+  end
+  object SQLQueryConsultaPedido: TSQLQuery
+    FieldDefs = <>
+    OnCalcFields = SQLQueryConsultaPedidoCalcFields
+    Database = SQLite3Connection
+    Transaction = SQLTransaction
+    SQL.Strings = (
+      'SELECT iID_PE'
+      '     , cRAZAO_PE'
+      '     , cCIDADE_PE'
+      '     , cUF_PE'
+      '     , dDATA_PE'
+      '     , cLOGIN_USUARIO_PE'
+      '     , cSTATUS_PE'
+      '  FROM TB_PEDIDOS'
+      ' WHERE 1 = 1'
+    )
+    Options = []
+    Params = <>
+    left = 64
+    top = 304
+    object SQLQueryConsultaPedidoiID_PE1: TLongintField
+      FieldKind = fkData
+      FieldName = 'iID_PE'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryConsultaPedidocRAZAO_PE1: TStringField
+      FieldKind = fkData
+      FieldName = 'cRAZAO_PE'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryConsultaPedidocCIDADE_PE1: TStringField
+      FieldKind = fkData
+      FieldName = 'cCIDADE_PE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryConsultaPedidocUF_PE1: TStringField
+      FieldKind = fkData
+      FieldName = 'cUF_PE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryConsultaPedidodDATA_PE1: TDateTimeField
+      FieldKind = fkData
+      FieldName = 'dDATA_PE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryConsultaPedidocLOGIN_USUARIO_PE1: TStringField
+      FieldKind = fkData
+      FieldName = 'cLOGIN_USUARIO_PE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryConsultaPedidocSTATUS_PE1: TStringField
+      FieldKind = fkData
+      FieldName = 'cSTATUS_PE'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryConsultaPedidoSTATUS_PE1: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'STATUS_PE'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object SQLQueryRelPedidos: TSQLQuery
+    FieldDefs = <>
+    OnCalcFields = SQLQueryRelPedidosCalcFields
+    Database = SQLite3Connection
+    Transaction = SQLTransaction
+    Options = []
+    Params = <>
+    left = 194
+    top = 304
+    object SQLQueryRelPedidosiID_PE1: TLongintField
+      FieldKind = fkData
+      FieldName = 'COD_VENDA'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryRelPedidoscRAZAO_PE1: TStringField
+      FieldKind = fkData
+      FieldName = 'DESTINATARIO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object SQLQueryRelPedidoscENDERECO_PE1: TStringField
+      FieldKind = fkData
+      FieldName = 'ENDERECO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object SQLQueryRelPedidoscNUMERO_PE1: TStringField
+      FieldKind = fkData
+      FieldName = 'NUMERO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryRelPedidoscCOMPLEMENTO_PE1: TStringField
+      FieldKind = fkData
+      FieldName = 'COMPLEMENTO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object SQLQueryRelPedidoscBAIRRO_PE1: TStringField
+      FieldKind = fkData
+      FieldName = 'BAIRRO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object SQLQueryRelPedidoscCIDADE_PE1: TStringField
+      FieldKind = fkData
+      FieldName = 'CIDADE'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object SQLQueryRelPedidoscUF_PE1: TStringField
+      FieldKind = fkData
+      FieldName = 'UF'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2
+    end
+    object SQLQueryRelPedidosnCEP_PE1: TFloatField
+      FieldKind = fkData
+      FieldName = 'CEP'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+    end
+    object SQLQueryRelPedidosdDATA_PE1: TDateTimeField
+      FieldKind = fkData
+      FieldName = 'DATA'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryRelPedidoscLOGIN_USUARIO_PE1: TStringField
+      FieldKind = fkData
+      FieldName = 'USUARIO'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object SQLQueryRelPedidosiID_PRODUTO_IP1: TLongintField
+      FieldKind = fkData
+      FieldName = 'COD_PRODUTO'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryRelPedidoscDESCRICAO_PR1: TStringField
+      FieldKind = fkData
+      FieldName = 'DESCRICAO'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object SQLQueryRelPedidosnVALOR_PRODUTO_IP1: TFloatField
+      FieldKind = fkData
+      FieldName = 'VALOR_UNITARIO'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+    end
+    object SQLQueryRelPedidosiQTDE_PRODUTO_IP1: TLongintField
+      FieldKind = fkData
+      FieldName = 'QUANTIDADE'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryRelPedidosSTATUS1: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'STATUS'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQueryRelPedidoscSTATUS_PE1: TStringField
+      FieldKind = fkData
+      FieldName = 'cSTATUS_PE'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Visible = False
+      Size = 1
+    end
+  end
+end
